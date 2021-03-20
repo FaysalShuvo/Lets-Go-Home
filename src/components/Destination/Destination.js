@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import "./Destination.css";
 import map from "../../assets/images/Map.png";
 import fakedata from "../../fakedata/Fakedata";
+import GoogleMap from "../GoogleMap/GoogleMap";
 
 const Destination = () => {
   const { name } = useParams();
@@ -65,7 +66,7 @@ const Destination = () => {
             )}
           </div>
           <div className="col-md-9 py-5">
-            <img src={map} alt="" />
+            <GoogleMap />
           </div>
         </div>
       </div>
