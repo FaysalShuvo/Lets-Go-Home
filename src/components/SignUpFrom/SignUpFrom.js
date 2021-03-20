@@ -1,5 +1,4 @@
 import React from "react";
-import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./SignupFrom.css";
 import firebase from "firebase/app";
@@ -8,6 +7,7 @@ import { useState } from "react";
 import { useContext } from "react";
 import { UserContext } from "../../App";
 import { initializeLoginFramework } from "../LogManager";
+import { Form } from "react-bootstrap";
 
 const SignUpFrom = () => {
   initializeLoginFramework();

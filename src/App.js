@@ -18,7 +18,6 @@ function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
   return (
     <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
-      <h3>Email: {loggedInUser.email}</h3>
       <Router>
         <Header />
         <Switch>
@@ -28,7 +27,7 @@ function App() {
           <Route exact path="/home">
             <Home />
           </Route>
-          <PrivateRoute path="/destination">
+          <PrivateRoute path="/destination/:name">
             <Destination />
           </PrivateRoute>
           <Route path="/signup">

@@ -21,7 +21,8 @@ export default function Login() {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
   const history = useHistory();
   const location = useLocation();
-  let { from } = location.state || { from: { pathname: "/" } };
+  // let { from } = location.state || { from: { pathname: "/" } };
+  let { from } = { from: { pathname: "/" } };
   const googleProvider = new firebase.auth.GoogleAuthProvider();
   const handleGoogleSignIn = () => {
     firebase
@@ -63,7 +64,6 @@ export default function Login() {
     }
   };
   const handleBlur = (e) => {
-    console.log(e.target.value);
     let isFieldValid = true;
     if (e.target.name === "email") {
       isFieldValid = /\S+@\S+\.\S+/.test(e.target.value);
@@ -77,7 +77,6 @@ export default function Login() {
       const newUserInfo = { ...user };
       newUserInfo[e.target.name] = e.target.value;
       setUser(newUserInfo);
-      console.log(user);
     }
   };
   return (
