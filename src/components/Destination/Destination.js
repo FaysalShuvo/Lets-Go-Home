@@ -3,12 +3,13 @@ import { Form, ListGroup } from "react-bootstrap";
 import { useParams } from "react-router";
 import "./Destination.css";
 import fakedata from "../../fakedata/Fakedata";
-import GoogleMap from "../GoogleMap/GoogleMap";
+
+import Map from "../Map/Map";
 
 const Destination = () => {
   const { name } = useParams();
   const vehicles = fakedata;
-  console.log(name);
+
   const [state, setState] = useState(false);
   const handleSearch = () => {
     return setState(true);
@@ -80,7 +81,7 @@ const Destination = () => {
             )}
           </div>
           <div className="col-md-9 py-5">
-            <GoogleMap />
+            <Map />
           </div>
         </div>
       </div>

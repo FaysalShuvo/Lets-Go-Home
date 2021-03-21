@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./SignupFrom.css";
 import firebase from "firebase/app";
 import "firebase/auth";
 import { useState } from "react";
@@ -11,7 +10,6 @@ import { Form } from "react-bootstrap";
 
 const SignUpFrom = () => {
   initializeLoginFramework();
-  const [newUser, setNewUser] = useState(false);
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
   const [user, setUser] = useState({
     isSignedIn: false,
