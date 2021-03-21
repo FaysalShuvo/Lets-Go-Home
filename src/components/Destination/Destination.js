@@ -2,23 +2,37 @@ import React, { useState } from "react";
 import { Form, ListGroup } from "react-bootstrap";
 import { useParams } from "react-router";
 import "./Destination.css";
-import map from "../../assets/images/Map.png";
 import fakedata from "../../fakedata/Fakedata";
 import GoogleMap from "../GoogleMap/GoogleMap";
 
 const Destination = () => {
   const { name } = useParams();
   const vehicles = fakedata;
-
+  console.log(name);
   const [state, setState] = useState(false);
   const handleSearch = () => {
     return setState(true);
   };
-  console.log(state);
-  const found = vehicles.find((v) => v.name === name);
 
+  const found = vehicles.find((v) => v.name === name);
+  console.log(found);
   return (
     <div style={{ height: "100vh", backgroundColor: "#3aafa9" }}>
+      {found === undefined && (
+        <div className="text-center error-txt">
+          <h1>
+            Hey!! There is a bug here that needs to fix.until than do this:
+          </h1>
+          <h4>
+            The problem is you did not select any transport ! so if you put any
+            destination and click search the whole website gonna crash so{" "}
+            <span>
+              got to home page and click any transport you want than put your
+              destination and Click Search!
+            </span>
+          </h4>
+        </div>
+      )}
       <div className="container">
         <div className="row">
           <div className="col-md-3 p-5">

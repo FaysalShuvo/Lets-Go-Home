@@ -6,7 +6,6 @@ import { UserContext } from "../../App";
 const Header = () => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
   const userEmail = loggedInUser.email;
-  console.log(userEmail?.length);
 
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
@@ -31,14 +30,15 @@ const Header = () => {
         {userEmail?.length > 0 ? (
           <h4 style={{ color: "white" }}>{userEmail}</h4>
         ) : (
-          <Button as={Link} to="/login" variant="warning">
-            Log In
-          </Button>
+          <div>
+            <Button as={Link} to="/login" variant="warning">
+              Log In
+            </Button>
+            <Button className="ml-3" as={Link} to="/signup" variant="info">
+              Sign Up
+            </Button>
+          </div>
         )}
-
-        <Button className="ml-3" as={Link} to="/signup" variant="info">
-          Sign Up
-        </Button>
       </Navbar.Collapse>
     </Navbar>
   );

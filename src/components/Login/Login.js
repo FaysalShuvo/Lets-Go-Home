@@ -9,6 +9,7 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import { initializeLoginFramework } from "../LogManager";
 
 export default function Login() {
+  let isFieldValid = true;
   initializeLoginFramework();
   const [user, setUser] = useState({
     isSignedIn: false,
@@ -17,12 +18,12 @@ export default function Login() {
     password: "",
     photo: "",
   });
-  // const [newUser, setNewUser] = useState(false);
+  const [errorMessage, setErrorMessage] = useState();
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
   const history = useHistory();
   const location = useLocation();
   // let { from } = location.state || { from: { pathname: "/" } };
-  let { from } = { from: { pathname: "/" } };
+  let { from } = { from: { pathname: "/destination/:name" } };
   const googleProvider = new firebase.auth.GoogleAuthProvider();
   const handleGoogleSignIn = () => {
     firebase
@@ -56,15 +57,16 @@ export default function Login() {
           history.replace(from);
         })
         .catch((error) => {
+          console.log("error", error.message);
           const newUserInfo = { ...user };
           newUserInfo.error = error.message;
           newUserInfo.success = false;
           setUser(newUserInfo);
+          setErrorMessage(error);
         });
     }
   };
   const handleBlur = (e) => {
-    let isFieldValid = true;
     if (e.target.name === "email") {
       isFieldValid = /\S+@\S+\.\S+/.test(e.target.value);
     }
@@ -72,6 +74,7 @@ export default function Login() {
       const isPasswordValid = e.target.value.length > 6;
       const passwordHasNumber = /\d{1}/.test(e.target.value);
       isFieldValid = isPasswordValid && passwordHasNumber;
+      console.log(isFieldValid);
     }
     if (isFieldValid) {
       const newUserInfo = { ...user };
@@ -108,6 +111,9 @@ export default function Login() {
         <Button onClick={handleSignIn} block size="lg">
           Login
         </Button>
+        <h3 className="mt-3 p-3" style={{ color: "red" }}>
+          {errorMessage?.message}
+        </h3>
         <h5 className="p-5" style={{ color: "white" }}>
           If you are new; <br /> go to <Link to="/signup">Sign Up </Link> page
         </h5>
